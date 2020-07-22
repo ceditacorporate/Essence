@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <PackageId>Cedita.Essence.DependencyInjetion</PackageId>
+    <PackageId>Cedita.Essence.DependencyInjection</PackageId>
     <PackageTags>essence,extensions,helpers,coda,cedita,data,aspnetcore,audit,entityframework,dapper,security,di,dependencyinjection,dependency,ioc,auto</PackageTags>
     <Title>Cedita Essence Dependency Injection</Title>
     <Authors>Cedita Ltd</Authors>

@@ -42,23 +42,25 @@ namespace Cedita.Essence.Diagnostics
         public async Task<bool> WaitForExitAsync(TimeSpan timeout)
         {
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
-            using CancellationTokenSource cts = new CancellationTokenSource();
-            Task exitedTask = this.exited.Task;
-            Task completedTask;
-            using (cts.Token.Register(o => ((TaskCompletionSource<bool>)o).SetResult(false), tcs))
+            using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                cts.CancelAfter(timeout);
-                completedTask = await Task.WhenAny(tcs.Task, exitedTask);
-            }
+                Task exitedTask = this.exited.Task;
+                Task completedTask;
+                using (cts.Token.Register(o => ((TaskCompletionSource<bool>)o).SetResult(false), tcs))
+                {
+                    cts.CancelAfter(timeout);
+                    completedTask = await Task.WhenAny(tcs.Task, exitedTask);
+                }
 
-            bool result = false;
-            if (completedTask == exitedTask)
-            {
-                await exitedTask;
-                result = true;
-            }
+                bool result = false;
+                if (completedTask == exitedTask)
+                {
+                    await exitedTask;
+                    result = true;
+                }
 
-            return result;
+                return result;
+            }
         }
 
         protected virtual void Dispose(bool disposing)
