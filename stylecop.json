@@ -1,0 +1,16 @@
+{
+  "settings": {
+    "documentationRules": {
+      "documentInterfaces": true,
+      "documentInternalElements": false,
+      "documentExposedElements": true,
+
+      "documentationCulture": "en-GB",
+
+      "xmlHeader": false
+    },
+    "orderingRules": {
+      "usingDirectivesPlacement": "preserve"
+    }
+  }
+}
